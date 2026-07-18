@@ -1,0 +1,111 @@
+{
+    "modules": [
+        {
+            "dir": "base",
+            "comment": "BrushEngine",
+            "sources_var": "BASE_SOURCES",
+            "headers_var": "BASE_HEADERS",
+            "lib_name": "base",
+            "includes": [
+                "${CMAKE_CURRENT_LIST_DIR}"
+            ],
+            "links": [
+                "spdlog"
+            ]
+        },
+        {
+            "dir": "engine",
+            "comment": "BrushEngine",
+            "sources_var": "ENGINE_SOURCES",
+            "headers_var": "ENGINE_HEADERS",
+            "lib_name": "engine",
+            "includes": [
+                "${CMAKE_CURRENT_LIST_DIR}",
+                "${CMAKE_SOURCE_DIR}/src",
+                "${CMAKE_SOURCE_DIR}/3rdparty/imgui",
+                "${Vulkan_INCLUDE_DIRS}"
+            ],
+            "links": [
+                "base",
+                "render",
+                "sys",
+                "tool",
+                "Vulkan::Vulkan"
+            ]
+        },
+        {
+            "dir": "render",
+            "comment": "BrushEngine",
+            "cmake_min_version": "3.14",
+            "sources_var": "RENDER_SOURCES",
+            "headers_var": "RENDER_HEADERS",
+            "lib_name": "render",
+            "includes": [
+                "${CMAKE_CURRENT_LIST_DIR}",
+                "${CMAKE_SOURCE_DIR}/src",
+                "${CMAKE_SOURCE_DIR}/3rdparty/imgui",
+                "${CMAKE_SOURCE_DIR}/3rdparty/imgui/backends",
+                "${CMAKE_SOURCE_DIR}/src/vulkan"
+            ],
+            "links": [
+                "base",
+                "imgui",
+                "Vulkan::Vulkan"
+            ]
+        },
+        {
+            "dir": "sys",
+            "comment": "BrushEngine",
+            "cmake_min_version": "3.14",
+            "sources_var": "SYS_SOURCES",
+            "headers_var": "SYS_HEADERS",
+            "lib_name": "sys",
+            "includes": [
+                "${CMAKE_CURRENT_LIST_DIR}",
+                "${CMAKE_SOURCE_DIR}/src",
+                "${CMAKE_SOURCE_DIR}/3rdparty/imgui",
+                "${CMAKE_SOURCE_DIR}/3rdparty/imgui/backends",
+                "${CMAKE_SOURCE_DIR}/src/render"
+            ],
+            "links": [
+                "base",
+                "render",
+                "imgui",
+                "Vulkan::Vulkan"
+            ]
+        },
+        {
+            "dir": "tool",
+            "sources_var": "TOOL_SOURCES",
+            "headers_var": "TOOL_HEADERS",
+            "lib_name": "tool",
+            "includes": [
+                "${CMAKE_CURRENT_LIST_DIR}",
+                "${CMAKE_SOURCE_DIR}/src"
+            ],
+            "links": [
+                "base",
+                "sys"
+            ]
+        },
+        {
+            "dir": "vulkan",
+            "sources_var": "VULKAN_SOURCES",
+            "headers_var": "VULKAN_HEADERS",
+            "lib_name": "vulkan_rhi",
+            "includes": [
+                "${CMAKE_CURRENT_LIST_DIR}",
+                "${CMAKE_SOURCE_DIR}/src",
+                "${CMAKE_SOURCE_DIR}/3rdparty/imgui",
+                "${Vulkan_INCLUDE_DIRS}"
+            ],
+            "links": [
+                "engine",
+                "Vulkan::Vulkan"
+            ],
+            "definitions": [
+                "VK_USE_PLATFORM_WIN32_KHR"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+build/
+devlog/
+third_party/**/build/
+third_party/**/.git/

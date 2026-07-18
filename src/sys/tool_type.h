@@ -1,0 +1,25 @@
+#pragma once
+
+enum class ToolType : int {
+    None,
+    Brush,
+    Move,
+    Eraser,
+    Eyedropper,
+    Zoom,
+    RotateCanvas,
+    RectSelect,
+    EllipseSelect,
+    Lasso,
+    PolyLasso,
+    MagicWand,
+    Crop,
+    Pen,
+    Text,
+    Shape,
+    Dodge,
+    Burn,
+    CloneStamp,
+    Fill,
+    Select,
+};
